@@ -14,40 +14,40 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class DemoApplication {
 
-	static final String topicExchangeName = "spring-boot-exchange";
+	static final String TOPIC_EXCHANGE_NAME = "spring-boot-exchange";
 
-	static final String queueName = "spring-boot";
+	static final String QUEUE_NAME = "spring-boot";
 
 	@Bean
 	Queue queue() {
-		return new Queue(queueName, false);
+		return new Queue(DemoApplication.QUEUE_NAME, false);
 	}
 
 	@Bean
 	TopicExchange exchange() {
-		return new TopicExchange(topicExchangeName);
+		return new TopicExchange(DemoApplication.TOPIC_EXCHANGE_NAME);
 	}
 
 	@Bean
-	Binding binding(Queue queue, TopicExchange exchange) {
+	Binding binding(final Queue queue, final TopicExchange exchange) {
 		return BindingBuilder.bind(queue).to(exchange).with("foo.bar.#");
 	}
 
 	@Bean
-	SimpleMessageListenerContainer container(ConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
+	SimpleMessageListenerContainer container(final ConnectionFactory connectionFactory, final MessageListenerAdapter listenerAdapter) {
 		SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory);
-		container.setQueueNames(queueName);
+		container.setQueueNames(DemoApplication.QUEUE_NAME);
 		container.setMessageListener(listenerAdapter);
 		return container;
 	}
 
 	@Bean
-	MessageListenerAdapter listenerAdapter(Receiver receiver) {
+	MessageListenerAdapter listenerAdapter(final Receiver receiver) {
 		return new MessageListenerAdapter(receiver, "receiveMessage");
 	}
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
