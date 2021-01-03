@@ -3,5 +3,5 @@
 !.gitignore
 !.README.md
 !docker-compose.yml
-!/demo/src/**
-!/demo/pom.xml
+!/sender/src/**
+!/sender/pom.xml
