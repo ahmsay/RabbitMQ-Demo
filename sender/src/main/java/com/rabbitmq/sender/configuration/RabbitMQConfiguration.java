@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfiguration {
 
     @Bean
-    public TopicExchange multiplicationExchange(@Value("${sender.exchange}") final String exchangeName) {
+    public TopicExchange topicExchange(@Value("${sender.exchange}") final String exchangeName) {
         return new TopicExchange(exchangeName);
     }
 
