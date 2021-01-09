@@ -3,5 +3,9 @@
 !.gitignore
 !.README.md
 !docker-compose.yml
+
 !/sender/src/**
 !/sender/pom.xml
+
+!/receiver/src/**
+!/receiver/pom.xml
