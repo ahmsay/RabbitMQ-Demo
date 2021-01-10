@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 public class SomethingHappenedEvent implements Serializable {
 
-    private final String message;
+    private String message;
+
+    public SomethingHappenedEvent() { };
 
     public SomethingHappenedEvent(final String message) {
         this.message = message;
