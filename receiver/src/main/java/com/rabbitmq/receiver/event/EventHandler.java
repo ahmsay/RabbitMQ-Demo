@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class EventHandler {
 
-    @RabbitListener(queues = "${receiver.queue}")
+    @RabbitListener(queues = "something.queue")
     void handleSomethingHappened(final SomethingHappenedEvent event) {
         try {
-            System.out.println("Something happened: " + event.getMessage());
+            System.out.println("[X] Received event: " + event.getMessage());
         } catch (final Exception e) {
             throw new AmqpRejectAndDontRequeueException(e);
         }
